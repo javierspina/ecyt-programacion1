@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # costo_camion.csv
 from informe_final import leer_camion
 

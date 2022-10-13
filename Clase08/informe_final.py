@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # informe_final.py
 from fileparse import parse_csv
 
