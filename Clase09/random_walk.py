@@ -5,12 +5,17 @@ from matplotlib import pyplot as plt
 def randomwalk(largo: int) -> np.ndarray:
     """
     Genera una random walk.
+<<<<<<< Updated upstream
     Devuelve un ndarray con de los n pasos
     con la suma acumulada de los n pasos en n.
+=======
+    Devuelve un ndarray con de los n pasos con la suma acumulada de los n pasos en n.
+>>>>>>> Stashed changes
     """
     pasos = np.random.randint (-1, 2, largo)
     return pasos.cumsum()
 
+<<<<<<< Updated upstream
 def plot_randomwalks(n_rw:int = 12,
                      largo_rw:int = 100000,
                      amplitud_y:int = 1000,
@@ -66,3 +71,26 @@ def plot_randomwalks(n_rw:int = 12,
     plt.show()
 
 plot_randomwalks()
+=======
+def plot_randomwalks(walks:int = 8) -> None:
+    plt.figure()
+    plt.subplot(2, 1, 1)
+    max_walk, min_walk = np.zeros(1), np.zeros(1)
+    for i in range(0, walks):
+        rw = randomwalk(100000)
+        if rw.sum() > max_walk.sum():
+            max_walk = rw
+        if rw.sum() < min_walk.sum():
+            min_walk = rw
+        plt.plot(rw)
+    plt.xlabel('Tiempo [segundos]')
+    plt.ylabel('Distancia al origen [metros]')
+
+    plt.subplot(2, 2, 3)
+    plt.plot(max_walk)
+    plt.subplot(2, 2, 4)
+    plt.plot(min_walk)
+    plt.show()
+
+plot_randomwalks()
+>>>>>>> Stashed changes

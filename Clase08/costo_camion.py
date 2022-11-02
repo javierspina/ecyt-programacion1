@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+#!/usr/bin/env python3
+>>>>>>> Stashed changes
 # costo_camion.csv
 from informe_final import leer_camion
 

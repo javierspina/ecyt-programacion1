@@ -1,5 +1,9 @@
 import numpy as np
+<<<<<<< Updated upstream
 from matplotlib import pyplot as plt
+=======
+import matplotlib.pyplot as plt
+>>>>>>> Stashed changes
 
 # Crea una figura nueva, de 8x6 pulgadas, con 80 puntos por pulgada
 plt.figure(figsize=(8, 6), dpi=80)

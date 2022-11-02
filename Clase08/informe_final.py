@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+#!/usr/bin/env python3
+>>>>>>> Stashed changes
 # informe_final.py
 from fileparse import parse_csv
 
