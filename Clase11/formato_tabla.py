@@ -1,5 +1,13 @@
 # formato_tabla.py
 
+
+def imprimir_tabla(camion, atributos, formateador):
+    formateador.encabezado(atributos)
+    for item in camion:
+        data = [str(getattr(item, colname)) for colname in atributos]
+        formateador.fila(data)
+
+
 def crear_formateador(formato):
     if formato == 'txt':
         formateador = FormatoTablaTXT()

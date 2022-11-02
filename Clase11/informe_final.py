@@ -7,9 +7,14 @@ import formato_tabla
 def leer_camion(nombre_archivo: str) -> list:
     """
     Lee un archivo que contiene los costos de frutas y verduras.
-    Los devuelve en una lista de diccionarios.
+    Los devuelve en una lista de Lotes.
     """
-    return parse_csv(nombre_archivo, types=[str, int, float])
+    camion = parse_csv(nombre_archivo, types=[str, int, float])
+    leido = []
+    for item in camion:
+        producto = lote.Lote(item['nombre'], item['cajones'], item['precio'])
+        leido.append(producto)
+    return leido
 
 
 def leer_precios(nombre_archivo: str) -> dict:
@@ -27,14 +32,10 @@ def hacer_informe(camion: list, precios: list) -> list:
     Calcula el cambio respecto al costo.
     """
     informe = []
-    for record in camion:
-        nombre = record['nombre']
-        if nombre in precios:
-            n_cajones = int(record['cajones'])
-            precio = float(record['precio'])
-            producto = lote.Lote(nombre, n_cajones, precio)
-            cambio = float(precios[nombre]) - producto.precio
-            info = (producto.nombre, producto.cajones, producto.precio, cambio)
+    for item in camion:
+        if item.nombre in precios:
+            cambio = float(precios[item.nombre]) - item.precio
+            info = (item.nombre, item.cajones, item.precio, cambio)
             informe.append(info)
     return informe
 
