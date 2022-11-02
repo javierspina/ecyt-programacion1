@@ -1,13 +1,27 @@
 # fileparse.py
 import csv
 
-def parse_csv(src, select:list = None, types:list = None, has_headers:bool = True, silence_errors:bool = False) -> list:
+
+def parse_csv(
+        src,
+        select:list = None,
+        types:list = None,
+        has_headers:bool = True,
+        silence_errors:bool = False) -> list:
     """
     Parsea un archivo .csv en una lista de registros.
-    Se puede seleccionar sólo un subconjunto de las columnas, determinando el parámetro select, que debe ser una lista de nombres de las columnas a considerar.
+
+    Se puede seleccionar sólo un subconjunto de las columnas,
+    determinando el parámetro select, que debe ser
+    una lista de nombres de las columnas a considerar.
+
     Se puede indicar los tipos de datos en las columnas para castear los datos.
-    También con el argumento has_headers se puede indicar si el .csv tiene encabezados o no.
-    Para que no se muestren errores en ejecución, seleccionar True para silence_errors.
+
+    También con el argumento has_headers
+    se puede indicar si el .csv tiene encabezados o no.
+
+    Para que no se muestren errores en ejecución,
+    seleccionar True para silence_errors.
     """
 
     if select and not has_headers:
@@ -16,7 +30,7 @@ def parse_csv(src, select:list = None, types:list = None, has_headers:bool = Tru
     try:
         f = open(src, 'rt')
     except TypeError as e:
-        print('[INFO] La entrada no es un archivo.')
+        print(f'[INFO] La entrada no es un archivo: {e}')
         f = src
     finally:
         rows = csv.reader(f)
@@ -46,8 +60,9 @@ def parse_csv(src, select:list = None, types:list = None, has_headers:bool = Tru
             records.append(record)
         except ValueError as e:
             if not silence_errors:
-                print(f'Fila {i}: No pude convertir {row}\nFila {i}: Motivo: {e}')
-    
+                m = f'Fila {i}: No pude convertir {row}\nFila {i}: Motivo: {e}'
+                print(m)
+
     if f != src:
         f.close()
     return records

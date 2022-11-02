@@ -11,6 +11,7 @@ def crear_formateador(formato):
         raise RuntimeError(f'Unknown format {formato}')
     return formateador
 
+
 class FormatoTabla:
     def encabezado(self, headers):
         '''
@@ -29,11 +30,12 @@ class FormatoTablaTXT(FormatoTabla):
     '''
     Generar una tabla en formato TXT
     '''
+
     def encabezado(self, headers):
         for h in headers:
             print(f'{h:>10s}', end=' ')
         print()
-        print(('-'*10 + ' ')*len(headers))
+        print(('-' * 10 + ' ') * len(headers))
 
     def fila(self, data_fila):
         for d in data_fila:
@@ -45,6 +47,7 @@ class FormatoTablaCSV(FormatoTabla):
     '''
     Generar una tabla en formato CSV
     '''
+
     def encabezado(self, headers):
         print(','.join(headers))
 
@@ -56,8 +59,11 @@ class FormatoTablaHTML(FormatoTabla):
     '''
     Generar una tabla en formato HTML
     '''
+
     def encabezado(self, headers):
-        print(''.join(['<tr>', *[f'<th>{h}</th>' for h in headers], '</tr>']))
+        headers = [f'<th>{h}</th>' for h in headers]
+        print(''.join(['<tr>', *headers, '</tr>']))
 
     def fila(self, data_fila):
-        print(''.join(['<tr>', *[f'<td>{d}</td>' for d in data_fila], '</tr>']))
+        data_fila = [f'<td>{d}</td>' for d in data_fila]
+        print(''.join(['<tr>', *data_fila, '</tr>']))
